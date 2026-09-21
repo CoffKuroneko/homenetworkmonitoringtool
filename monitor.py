@@ -91,12 +91,12 @@ def run_ping(ip):
     )
     return result
 
-def run_traceroute(host):
+def run_traceroute(ip):
     result = subprocess.run(
-        ["traceroute", host],
+        ["traceroute", ip],
         capture_output=True,
         text=True,
-        timeout=15
+        timeout=15 #起動した処理が15秒以内に終了しなければタイムアウト
     )
     return result
 
