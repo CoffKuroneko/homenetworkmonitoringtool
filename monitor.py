@@ -58,6 +58,11 @@ def main():
                         f.write("\n")
 
                 if ping_time is not None and ping_time > PING_DELAY_THRESHOLD:
+                    with open(LOG_FILE, "a") as f:
+                        f.write(f"{now}\n")
+                        f.write(result_ping.stdout)
+                        f.write("\n")
+
                     if not traceroute_permission[name]:
                         try:
                             result_traceroute = run_traceroute(ip)
@@ -75,6 +80,7 @@ def main():
                         
                         traceroute_time[name] = time.monotonic()
                         traceroute_permission[name] = True
+
                 else:
                     if time.monotonic() - traceroute_time[name] >= TRACEROUTE_COOLDOWN_SECONDS:
                         traceroute_permission[name] = False
