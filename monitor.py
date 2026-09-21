@@ -29,7 +29,7 @@ def main():
 
             #正規表現
             #\d → 数字
-            #. → 小数点も許可
+            #. → 小数点（[] 内なのでピリオドそのもの）
             #+ → 1文字以上続く
             match = re.search(r"time=([\d.]+)", result_ping.stdout)
 
@@ -80,7 +80,6 @@ def main():
                         
                         traceroute_time[name] = time.monotonic()
                         traceroute_permission[name] = True
-
                 else:
                     if time.monotonic() - traceroute_time[name] >= TRACEROUTE_COOLDOWN_SECONDS:
                         traceroute_permission[name] = False
