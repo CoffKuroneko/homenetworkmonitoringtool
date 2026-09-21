@@ -79,11 +79,6 @@ def main():
                     if time.monotonic() - traceroute_time[name] >= TRACEROUTE_COOLDOWN_SECONDS:
                         traceroute_permission[name] = False
 
-                    with open(LOG_FILE, "a") as f:
-                        f.write(f"{now}\n")
-                        f.write(f"{result_ping.stdout}\n")
-                        f.write("\n")
-
                 packet_lost[name] = False
 
             time.sleep(1)
